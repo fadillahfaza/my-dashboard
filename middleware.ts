@@ -1,12 +1,11 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from "next/server";
 
-export function middleware(request) {
-  const { pathname } = request.nextUrl
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
 
-  // JIKA rute yang diakses mengandung '/api/auth', langsung loloskan tanpa periksa login
-  if (pathname.startsWith('/api/auth')) {
-    return NextResponse.next()
+  if (pathname.startsWith("/api/auth")) {
+    return NextResponse.next();
   }
 
-  // ... (Sisa kode cek token/session login Anda yang sudah ada di bawahnya)
+  return NextResponse.next();
 }
